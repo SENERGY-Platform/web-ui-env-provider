@@ -1,6 +1,6 @@
-FROM nginx
-RUN apt-get update && apt-get install -y curl
+FROM nginx:stable-alpine
+RUN apk add curl bash
 ADD nginx.conf /etc/nginx/conf.d/default.conf
-ADD build-env.sh /
+ADD build-env.sh /opt
 RUN chmod -R a+r /usr/share/nginx/html
-CMD ["/bin/sh",  "-c",  "/build-env.sh && exec nginx -g 'daemon off;'"]
+CMD ["bash", "-c", "/opt/build-env.sh && exec nginx -g 'daemon off;'"]
