@@ -1,5 +1,5 @@
 FROM nginx:stable-alpine
-RUN apk add curl bash
+RUN apk add curl bash jq
 ADD nginx.conf /etc/nginx/conf.d/default.conf
 ADD build-env.sh /opt
 RUN chmod -R a+r /usr/share/nginx/html
